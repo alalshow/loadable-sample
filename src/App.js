@@ -1,25 +1,47 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import withSplitting from './withSplitting';
+//import notify from './notify';
+const SplitMe = withSplitting(()=> import('./SplitMe'));
 
 class App extends Component {
+  
+  // handleClick = () => {
+  //   import('./notify').then(({default: notify}) => {
+  //     notify();
+  //   })
+  // }
+
+  // state = {
+  //   SplitMe: null
+  // }
+
+  // handleClick = () => {
+  //   import('./SplitMe').then(({default : SplitMe})=> {
+  //     this.setState({
+  //       SplitMe
+  //     })
+  //   })
+  // }
+
+  state = {
+    visible: false
+  }
+
+  handleClick = () => {
+    this.setState({
+      visible: true
+    })
+  }
+
+ 
   render() {
+    // const {SplitMe} = this.state;
+    const {visible} = this.state;
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <button onClick={this.handleClick}>Click Me</button>
+        {visible && <SplitMe/>}
       </div>
     );
   }
